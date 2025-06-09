@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const layout = "default";
-import './app.css';
 </script>
 
 <template>

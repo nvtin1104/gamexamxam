@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+body {
+  font-family: 'Lora', serif;
+}
 @theme {
 --color-main: #fff;
 --color-secondary: #f5f5f5;

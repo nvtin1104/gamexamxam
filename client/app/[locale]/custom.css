@@ -1,0 +1,8 @@
+/* hỗ trợ 3D lật thẻ */
+.perspective {
+  perspective: 1000px;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

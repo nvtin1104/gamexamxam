@@ -6,6 +6,7 @@ import { getMessages } from "next-intl/server";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import "./globals.css";
+import "./custom.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

@@ -1,0 +1,18 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install dependencies (bao gồm dev dependencies)
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Expose cổng NestJS
+EXPOSE 4000
+
+# Chạy NestJS ở chế độ watch (hot reload)
+CMD ["npm", "run", "start:dev"]

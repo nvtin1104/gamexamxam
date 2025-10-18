@@ -1,0 +1,59 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: gamexamxam-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: gamexamxam
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - gamexamxam-network
+
+  backend-server:
+    build:
+      context: ./backend-server
+      dockerfile: Dockerfile.dev
+    container_name: gamexamxam-backend
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - MONGO_URI=mongodb://admin:password123@mongodb:27017/gamexamxam?authSource=admin
+      - JWT_SECRET=your-secret-key-here
+      - JWT_EXPIRES_IN=7d
+      - PORT=4000
+      - NODE_ENV=development
+    depends_on:
+      - mongodb
+    networks:
+      - gamexamxam-network
+
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    container_name: gamexamxam-client
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend-server:4000
+    depends_on:
+      - backend-server
+    networks:
+      - gamexamxam-network
+
+
+volumes:
+  mongodb_data:
+
+networks:
+  gamexamxam-network:
+    driver: bridge

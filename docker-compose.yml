@@ -25,6 +25,13 @@ services:
     volumes:
       - ./backend-server:/app
       - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=1
+      - CHOKIDAR_INTERVAL=300
+      - TS_NODE_TRANSPILE_ONLY=1
+      - WATCHPACK_POLLING=true
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/gamexamxam?authSource=admin
     depends_on:
       - mongodb
     networks:

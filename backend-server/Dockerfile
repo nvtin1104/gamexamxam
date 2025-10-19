@@ -7,7 +7,7 @@
     COPY package*.json ./
     
     # Cài full dependencies (gồm dev)
-    RUN npm ci
+    RUN npm ci --legacy-peer-deps
     
     # Copy toàn bộ source code
     COPY . .
@@ -24,7 +24,7 @@
     COPY package*.json ./
     
     # Cài chỉ dependencies production
-    RUN npm ci --omit=dev
+    RUN npm ci --omit=dev --legacy-peer-deps
     
     # Copy file build từ stage 1
     COPY --from=builder /app/dist ./dist

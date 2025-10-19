@@ -1,0 +1,17 @@
+{
+  "name": "gamexamxam",
+  "version": "1.0.0",
+  "description": "GameXamXam - Multi-service application",
+  "scripts": {
+    "dev": "docker-compose up --build",
+    "dev:down": "docker-compose down",
+    "dev:logs": "docker-compose logs -f",
+    "dev:clean": "docker-compose down --volumes --remove-orphans",
+    "backend:dev": "cd backend-server && npm run start:dev",
+    "client:dev": "cd client && npm run dev",
+    "game:dev": "cd game-server && npm run start:dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

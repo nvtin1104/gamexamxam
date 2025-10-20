@@ -57,4 +57,8 @@ export class UsersService {
       throw new NotFoundException(`Users với ID ${id} không tồn tại`);
     }
   }
+
+  async findByEmail(email: string): Promise<Users | null> {
+    return this.usersModel.findOne({ email }).exec();
+  }
 }

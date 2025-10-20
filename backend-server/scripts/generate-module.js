@@ -39,7 +39,7 @@ import { ${moduleNamePascal}Schema } from './${moduleName}.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: ${moduleNamePascal}, schema: ${moduleNamePascal}Schema }])
+    MongooseModule.forFeature([{ name: '${moduleNamePascal}', schema: ${moduleNamePascal}Schema }])
   ],
   controllers: [${moduleNamePascal}Controller],
   providers: [${moduleNamePascal}Service],

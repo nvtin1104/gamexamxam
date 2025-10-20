@@ -10,7 +10,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password123
       MONGO_INITDB_DATABASE: gamexamxam
     volumes:
-      - mongodb_data:/data/db
+      - C:\mongo-data:/data/db  # Sử dụng cùng thư mục với container chính
+      
     networks:
       - gamexamxam-network
 
@@ -28,10 +29,13 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=1
-      - CHOKIDAR_INTERVAL=300
+      - CHOKIDAR_INTERVAL=1000
       - TS_NODE_TRANSPILE_ONLY=1
       - WATCHPACK_POLLING=true
+      - WATCHPACK_POLLING_INTERVAL=1000
       - MONGODB_URI=mongodb://admin:password123@mongodb:27017/gamexamxam?authSource=admin
+      - JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+      - JWT_EXPIRES_IN=24h
     depends_on:
       - mongodb
     networks:

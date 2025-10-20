@@ -1,9 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-
+import * as bcrypt from 'bcrypt';
 export type UsersDocument = Users & Document;
 
-@Schema({ timestamps: true, versionKey: false })
+@Schema({
+  timestamps: true,
+  versionKey: false,
+  toJSON: {
+    transform: (_doc: any, ret: any) => {
+      delete ret.password;
+      return ret;
+    },
+  },
+})
 export class Users {
   @Prop({
     required: [true, 'Tên người dùng là bắt buộc'],
@@ -46,8 +55,6 @@ export class Users {
   })
   birthDate: Date;
   @Prop({ default: true })
-  isActive: boolean;
-  @Prop({ default: false })
   canLoginGoogle: boolean;
   @Prop({ default: false })
   isLinkedGoogle: boolean;
@@ -55,6 +62,38 @@ export class Users {
   canLoginFacebook: boolean;
   @Prop({ default: false })
   isLinkedFacebook: boolean;
+  @Prop({
+    type: String,
+    enum: ['user', 'admin', 'moderator', 'staff', 'root', 'partner'],
+    default: 'user'
+  })
+  role: string;
+  @Prop({
+    type: String,
+    default: null
+  })
+  permission: string;
+  @Prop({
+    type: String,
+    enum: ['active', 'inactive', 'blocked', 'deleted', 'locked'],
+    default: 'active'
+  })
+  status: string;
 }
-
 export const UsersSchema = SchemaFactory.createForClass(Users);
+UsersSchema.pre('save', async function (next: any) {
+  const user = this as UsersDocument;
+
+  if (!user.isModified('password')) return next();
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+    next();
+  } catch (err) {
+    next(err as Error);
+  }
+});
+UsersSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
+  return await bcrypt.compare(candidatePassword, this.password);
+};

@@ -47,4 +47,14 @@ export class CreateUsersDto {
     message: 'Ngày sinh phải là chuỗi ngày hợp lệ (YYYY-MM-DD)',
   })
   birthDate?: string;
+  @IsOptional()
+  @IsBoolean({
+    message: 'Trạng thái đăng nhập Google phải là true hoặc false',
+  })
+  canLoginGoogle?: boolean;
+  @IsOptional()
+  @IsBoolean({
+    message: 'Trạng thái liên kết Google phải là true hoặc false',
+  })
+  isLinkedGoogle?: boolean;
 }

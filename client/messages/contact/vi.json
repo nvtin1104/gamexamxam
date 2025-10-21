@@ -1,0 +1,33 @@
+{
+  "title": "Liên hệ với chúng tôi",
+  "subtitle": "Chúng tôi rất vui được nghe từ bạn! Hãy gửi tin nhắn cho chúng tôi.",
+  "form": {
+    "name": "Tên",
+    "email": "Email",
+    "message": "Nội dung",
+    "submit": "Gửi tin nhắn",
+    "sending": "Đang gửi...",
+    "success": "Tin nhắn đã được gửi thành công!",
+    "error": "Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại."
+  },
+  "validation": {
+    "name": {
+      "required": "Tên là bắt buộc",
+      "minLength": "Tên phải có ít nhất 2 ký tự"
+    },
+    "email": {
+      "required": "Email là bắt buộc",
+      "invalid": "Email không hợp lệ"
+    },
+    "message": {
+      "required": "Nội dung là bắt buộc",
+      "minLength": "Nội dung phải có ít nhất 10 ký tự"
+    }
+  },
+  "info": {
+    "title": "Thông tin liên hệ",
+    "email": "Email: contact@minigameshub.com",
+    "phone": "Điện thoại: +84 123 456 789",
+    "address": "Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM"
+  }
+}

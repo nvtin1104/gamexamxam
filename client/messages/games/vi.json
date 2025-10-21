@@ -1,0 +1,34 @@
+{
+  "duckRace": {
+    "title": "Đua vịt",
+    "description": "Đua vịt của bạn đến vạch đích!",
+    "instructions": "Nhấn để vịt chạy nhanh hơn",
+    "start": "Bắt đầu",
+    "restart": "Chơi lại",
+    "winner": "Chúc mừng! Bạn đã thắng!",
+    "loser": "Chúc may mắn lần sau!"
+  },
+  "flipCard": {
+    "title": "Lật thẻ",
+    "description": "Kiểm tra trí nhớ của bạn với trò chơi ghép thẻ!",
+    "instructions": "Lật 2 thẻ để tìm cặp giống nhau",
+    "start": "Bắt đầu",
+    "restart": "Chơi lại",
+    "score": "Điểm số",
+    "moves": "Lượt chơi",
+    "time": "Thời gian",
+    "congratulations": "Chúc mừng! Bạn đã hoàn thành!"
+  },
+  "memoryGame": {
+    "title": "Trò chơi trí nhớ",
+    "description": "Thử thách kỹ năng ghi nhớ của bạn!",
+    "instructions": "Ghi nhớ vị trí các thẻ và tìm cặp giống nhau",
+    "start": "Bắt đầu",
+    "restart": "Chơi lại",
+    "level": "Cấp độ",
+    "score": "Điểm số",
+    "bestScore": "Điểm cao nhất",
+    "gameOver": "Game Over",
+    "newRecord": "Kỷ lục mới!"
+  }
+}

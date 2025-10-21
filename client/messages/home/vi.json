@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "title": "Mini Games Hub",
+    "subtitle": "Khám phá bộ sưu tập mini games thú vị và đa dạng",
+    "cta": {
+      "playNow": "Bắt đầu chơi ngay!",
+      "contact": "Liên hệ"
+    }
+  },
+  "games": {
+    "title": "Trò chơi",
+    "subtitle": "Chọn một trò chơi để bắt đầu cuộc phiêu lưu thú vị của bạn!",
+    "duckRace": {
+      "name": "Đua vịt",
+      "description": "Đua vịt của bạn đến vạch đích!"
+    },
+    "flipCard": {
+      "name": "Lật thẻ",
+      "description": "Kiểm tra trí nhớ của bạn với trò chơi ghép thẻ!"
+    },
+    "memoryGame": {
+      "name": "Trò chơi trí nhớ",
+      "description": "Thử thách kỹ năng ghi nhớ của bạn!"
+    },
+    "playButton": "Chơi ngay"
+  },
+  "features": {
+    "title": "Tại sao chọn chúng tôi?",
+    "subtitle": "Trải nghiệm gaming tuyệt vời với các tính năng độc đáo",
+    "fast": {
+      "title": "Nhanh chóng",
+      "description": "Tải nhanh, chơi ngay không cần cài đặt"
+    },
+    "brain": {
+      "title": "Rèn luyện trí não",
+      "description": "Các trò chơi giúp cải thiện trí nhớ và tư duy"
+    },
+    "diverse": {
+      "title": "Đa dạng",
+      "description": "Nhiều thể loại game phù hợp mọi lứa tuổi"
+    }
+  }
+}

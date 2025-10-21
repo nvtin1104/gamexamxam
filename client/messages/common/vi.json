@@ -1,0 +1,20 @@
+{
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống",
+    "toggleTheme": "Chuyển đổi chủ đề"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Có lỗi xảy ra",
+    "retry": "Thử lại",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước đó",
+    "close": "Đóng",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
+  }
+}

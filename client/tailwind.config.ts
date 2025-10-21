@@ -10,8 +10,14 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+			sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+  		},
   		colors: {
-  			background: 'hsl(var(--background))',
+  			background: {
+				DEFAULT: 'hsl(var(--background))',
+				secondary: 'hsl(var(--background-secondary))',
+			},
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',

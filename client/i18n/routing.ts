@@ -8,6 +8,10 @@ export const routing = defineRouting({
   // Used when no locale matches
   defaultLocale: "vi",
   pathnames: {
+    "/": {
+      en: "/",
+      vi: "/",
+    },
     "/contact": {
       en: "/contact-me",
       vi: "/lien-he",
@@ -15,6 +19,14 @@ export const routing = defineRouting({
     "/game/duck-race": {
       en: "/game/duck-race",
       vi: "/tro-choi/dua-vit",
+    },
+    "/game/flip-card": {
+      en: "/game/flip-card",
+      vi: "/tro-choi/doi-anh",
+    },
+    "/game/memory-game": {
+      en: "/game/memory-game",
+      vi: "/tro-choi/do-mau",
     },
   },
 });

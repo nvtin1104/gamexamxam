@@ -1,0 +1,28 @@
+{
+  "header": {
+    "title": "GameXamXam",
+    "nav": {
+      "home": "Home",
+      "games": "Games",
+      "contact": "Contact"
+    },
+    "games": {
+      "duckRace": "Duck Race",
+      "flipCard": "Flip Card",
+      "memoryGame": "Memory Game"
+    }
+  },
+  "footer": {
+    "description": "Discover our collection of fun and diverse games",
+    "quickLinks": "Quick Links",
+    "games": "Games",
+    "contact": "Contact",
+    "copyright": "© 2025 GameXamXam. All rights reserved.",
+    "madeWith": "Made with ❤️ using Next.js",
+    "nav": {
+      "home": "Home",
+      "games": "Games",
+      "contact": "Contact"
+    }
+  }
+}

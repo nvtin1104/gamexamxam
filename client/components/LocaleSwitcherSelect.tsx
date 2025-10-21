@@ -36,7 +36,7 @@ export default function LocaleSwitcherSelect({ defaultValue, label }: Props) {
   return (
     <Select defaultValue={defaultValue} onValueChange={onSelectChange}>
       <SelectTrigger
-        className='w-[80px] h-8 border-none bg-transparent focus:ring-0 focus:ring-offset-0'
+        className="w-[80px]  border-none bg-white text-black dark:bg-gray-900 dark:text-white focus:ring-0 focus:ring-offset-0"
         aria-label={label}
       >
         <SelectValue />

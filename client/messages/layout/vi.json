@@ -1,0 +1,28 @@
+{
+  "header": {
+    "title": "GameXamXam",
+    "nav": {
+      "home": "Trang chủ",
+      "games": "Trò chơi",
+      "contact": "Liên hệ"
+    },
+    "games": {
+      "duckRace": "Đua vịt",
+      "flipCard": "Lật thẻ",
+      "memoryGame": "Trò chơi trí nhớ"
+    }
+  },
+  "footer": {
+    "description": "Khám phá bộ sưu tập trò chơi thú vị và đa dạng",
+    "quickLinks": "Liên kết nhanh",
+    "games": "Trò chơi",
+    "contact": "Liên hệ",
+    "copyright": "© 2025 GameXamXam. Tất cả quyền được bảo lưu.",
+    "madeWith": "Được tạo với ❤️ bằng Next.js",
+    "nav": {
+      "home": "Trang chủ",
+      "games": "Trò chơi",
+      "contact": "Liên hệ"
+    }
+  }
+}

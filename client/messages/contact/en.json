@@ -1,0 +1,33 @@
+{
+  "title": "Contact Us",
+  "subtitle": "We'd love to hear from you! Send us a message.",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "An error occurred while sending the message. Please try again."
+  },
+  "validation": {
+    "name": {
+      "required": "Name is required",
+      "minLength": "Name must be at least 2 characters"
+    },
+    "email": {
+      "required": "Email is required",
+      "invalid": "Invalid email address"
+    },
+    "message": {
+      "required": "Message is required",
+      "minLength": "Message must be at least 10 characters"
+    }
+  },
+  "info": {
+    "title": "Contact Information",
+    "email": "Email: contact@minigameshub.com",
+    "phone": "Phone: +84 123 456 789",
+    "address": "Address: 123 ABC Street, XYZ District, HCMC"
+  }
+}

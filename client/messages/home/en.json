@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "title": "Mini Games Hub",
+    "subtitle": "Discover our collection of fun and diverse mini games",
+    "cta": {
+      "playNow": "Start Playing Now!",
+      "contact": "Contact"
+    }
+  },
+  "games": {
+    "title": "Games",
+    "subtitle": "Choose a game to start your exciting adventure!",
+    "duckRace": {
+      "name": "Duck Race",
+      "description": "Race your duck to the finish line!"
+    },
+    "flipCard": {
+      "name": "Flip Card",
+      "description": "Test your memory with card matching!"
+    },
+    "memoryGame": {
+      "name": "Memory Game",
+      "description": "Challenge your memory skills!"
+    },
+    "playButton": "Play Now"
+  },
+  "features": {
+    "title": "Why Choose Us?",
+    "subtitle": "Experience amazing gaming with unique features",
+    "fast": {
+      "title": "Fast",
+      "description": "Quick loading, play instantly without installation"
+    },
+    "brain": {
+      "title": "Brain Training",
+      "description": "Games help improve memory and thinking"
+    },
+    "diverse": {
+      "title": "Diverse",
+      "description": "Various game genres suitable for all ages"
+    }
+  }
+}

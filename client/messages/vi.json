@@ -1,20 +1,9 @@
 {
-  "HomePage": {
-    "title": "Chào mừng bạn đến với trang chủ!",
-    "welcome": {
-      "title": "Chào mừng bạn đến với trang chủ!"
-    },
-    "contact": "Đi đến trang liên hệ"
-  },
-  "contactForm": {
-    "name": "Tên",
-    "email": "Email",
-    "message": "Nội dung",
-    "submit": "Submit"
-  },
-  "validation": {
-    "invalid": "Email không hợp lệ",
-    "required": "Tên bắt buộc",
-    "min": "Nội dung bắt buộc phải ít nhất 10 ký tự"
+  "vi": {
+    "home": "home/vi.json",
+    "games": "games/vi.json",
+    "contact": "contact/vi.json",
+    "common": "common/vi.json",
+    "layout": "layout/vi.json"
   }
 }

@@ -9,15 +9,13 @@
     "loser": "Chúc may mắn lần sau!"
   },
   "flipCard": {
-    "title": "Lật thẻ",
+    "title": "Lật thẻ Game",
     "description": "Kiểm tra trí nhớ của bạn với trò chơi ghép thẻ!",
-    "instructions": "Lật 2 thẻ để tìm cặp giống nhau",
     "start": "Bắt đầu",
     "restart": "Chơi lại",
-    "score": "Điểm số",
-    "moves": "Lượt chơi",
-    "time": "Thời gian",
-    "congratulations": "Chúc mừng! Bạn đã hoàn thành!"
+    "settings": "Cài đặt",
+    "close": "Đóng",
+    "viewAnswer": "Xem đáp án"
   },
   "memoryGame": {
     "title": "Trò chơi trí nhớ",

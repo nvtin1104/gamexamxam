@@ -37,7 +37,7 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <Header />
-            <main className="min-h-screen">
+            <main className="bg-background-secondary">
               {children}
             </main>
             <Footer />

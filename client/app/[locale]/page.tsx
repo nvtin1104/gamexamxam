@@ -34,7 +34,7 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-background-secondary">
-      <section className="relative overflow-hidden bg-background-secondary text-white">
+      <section className="relative overflow-hidden bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <div className="flex justify-center mb-6">
@@ -43,7 +43,7 @@ export default async function HomePage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               {t("hero.title")}
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 dark:text-blue-200 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               {t("hero.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -55,7 +55,7 @@ export default async function HomePage() {
               </Link>
               <Link
                 href="/contact"
-                className="border-2 border-white hover:bg-white hover:text-blue-600 dark:hover:text-blue-800 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200"
+                className="border-2 border-foreground hover:bg-foreground hover:text-background dark:hover:text-blue-800 text-foreground font-bold py-3 px-8 rounded-lg transition-colors duration-200"
               >
                 {t("hero.cta.contact")}
               </Link>

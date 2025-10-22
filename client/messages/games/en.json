@@ -9,15 +9,14 @@
     "loser": "Better luck next time!"
   },
   "flipCard": {
-    "title": "Flip Card",
+    "title": "Flip Card Game",
     "description": "Test your memory with card matching!",
     "instructions": "Flip 2 cards to find matching pairs",
     "start": "Start",
     "restart": "Play Again",
-    "score": "Score",
-    "moves": "Moves",
-    "time": "Time",
-    "congratulations": "Congratulations! You completed it!"
+    "settings": "Settings",
+    "close": "Close",
+    "viewAnswer": "View Answer"
   },
   "memoryGame": {
     "title": "Memory Game",

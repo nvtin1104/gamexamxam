@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react"
 
 export default function MobileHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const t = useTranslations("layout.header")
+  const t = useTranslations("layout")
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -45,18 +45,18 @@ export default function MobileHeader() {
             onClick={() => setIsMenuOpen(false)}
           />
 
-           <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-800 shadow-xl dark:shadow-gray-900/50 animate-in slide-in-from-right duration-300 ease-out">
-             <div className="flex flex-col h-full">
-               <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
-                 <button
-                   onClick={() => setIsMenuOpen(false)}
-                   className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                   aria-label="Close menu"
-                 >
-                   <X className="h-5 w-5" />
-                 </button>
-               </div>
+          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-800 shadow-xl dark:shadow-gray-900/50 animate-in slide-in-from-right duration-300 ease-out">
+            <div className="flex flex-col h-full">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
 
               <nav className="flex-1 px-4 py-6 space-y-4 overflow-y-auto">
                 <Link

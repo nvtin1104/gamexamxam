@@ -8,7 +8,6 @@ export default async function FlipCardPage() {
                 <h1 className="text-3xl sm:text-4xl font-bold text-primary">{t("title")}</h1>
                 <p className="text-sm text-muted-foreground">{t("description")}</p>
             </div>
-
         </div>
         <FlipCardGame />
     </div>;

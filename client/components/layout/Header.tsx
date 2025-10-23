@@ -6,7 +6,7 @@ import MobileHeader from "./MobileHeader";
 import ModeToggle from "./theme-buton";
 
 export default function Header() {
-  const t = useTranslations("layout.header");
+  const t = useTranslations("layout");
 
   return (
     <header className="sticky top-0 z-50 bg-background text-foreground shadow-lg">

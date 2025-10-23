@@ -73,70 +73,97 @@ export default function FlipCardGame() {
 
   return (
     <div className="relative transition-colors duration-300">
-      <button
-        onClick={toggleSettings}
-        className="text-sm px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-      >
-        ⚙️
-        {t("settings")}
-      </button>
-      <div className="p-6 space-y-6 flex flex-col items-center justify-center">
-        <div className="grid grid-cols-3 gap-4">
-          {cards.map((card) => (
-            <motion.div
-              key={card.id}
-              className="relative w-28 h-36 sm:w-32 sm:h-40 cursor-pointer perspective"
-              onClick={() => revealCard(card.id)}
-            >
-              <motion.div
-                animate={{ rotateY: card.revealed ? 180 : 0 }}
-                transition={{ duration: 0.5 }}
-                style={{ transformStyle: "preserve-3d" }}
-                className="absolute inset-0"
-              >
-                <div className="absolute inset-0 bg-[#ffcc80] rounded-xl shadow-inner flex items-center justify-center text-xl font-bold backface-hidden">
-                  ❓
-                </div>
-                <div
-                  className="absolute inset-0 bg-card rounded-xl shadow flex items-center justify-center text-sm sm:text-base px-2 text-center backface-hidden"
-                  style={{ transform: "rotateY(180deg)" }}
-                >
-                  {card.text}
-                </div>
-              </motion.div>
-            </motion.div>
-          ))}
+      <div className="flex md:flex-row flex-col items-center justify-center p-3 gap-3">
+        <div>
+          tesst
         </div>
-        <div className="flex gap-3">
-          {!started && (
-            <Button
-              onClick={startGame}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg"
-            >
-              <Play />
-              Bắt đầu
-            </Button>
-          )}
-          {gameOver && (
-            <div className="flex gap-3">
+        {/* Main Game */}
+        <div className="space-y-6 flex flex-col items-center justify-center w-full">
+          <div className="grid grid-cols-3 gap-4 w-full">
+            {cards.map((card) => (
+              <motion.div
+                key={card.id}
+                className="relative h-36 w-full sm:h-40 cursor-pointer perspective"
+                onClick={() => revealCard(card.id)}
+              >
+                <motion.div
+                  animate={{ rotateY: card.revealed ? 180 : 0 }}
+                  transition={{ duration: 0.5 }}
+                  style={{ transformStyle: "preserve-3d" }}
+                  className="absolute inset-0"
+                >
+                  <div className="absolute inset-0 bg-[#ffcc80] rounded-xl shadow-inner flex items-center justify-center text-xl font-bold backface-hidden">
+                    ❓
+                  </div>
+                  <div
+                    className="absolute p-1 inset-0 bg-card rounded-xl shadow flex items-center justify-center text-sm sm:text-base text-center backface-hidden"
+                    style={{ transform: "rotateY(180deg)" }}
+                  >
+                    {card.text}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="flex gap-3">
+            {!started && (
               <Button
                 onClick={startGame}
-                variant="outline"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg"
               >
-                <RefreshCcw />
-                {t("restart")}
+                <Play />
+                Bắt đầu
               </Button>
-              <Button
-                onClick={flipAllCards}
-                variant="outline"
-              >
-                <FolderOpen />
-                {t("viewAnswer")}
-              </Button>
-            </div>
-          )}
+            )}
+            {gameOver && (
+              <div className="flex gap-3">
+                <Button
+                  onClick={startGame}
+                  variant="outline"
+                >
+                  <RefreshCcw />
+                  {t("restart")}
+                </Button>
+                <Button
+                  onClick={flipAllCards}
+                  variant="outline"
+                >
+                  <FolderOpen />
+                  {t("viewAnswer")}
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+        {/* Settings */}
+        <div className="flex justify-start self-stretch gap-3">
+          <Button
+            onClick={toggleSettings}
+            variant="outline"
+            className="w-full"
+          >
+            ⚙️
+            {t("settings")}
+          </Button>
+          <Button
+            onClick={toggleSettings}
+            variant="outline"
+            className="w-full"
+          >
+            👨‍💻
+            {t("dataonline")}
+          </Button>
+          <Button
+            onClick={toggleSettings}
+            variant="outline"
+            className="w-full"
+          >
+            💾
+            {t("data")}
+          </Button>
         </div>
       </div>
+
       <GameSetting showSettings={showSettings} setShowSettings={setShowSettings} />
     </div>
   );

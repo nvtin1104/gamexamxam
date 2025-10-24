@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { FolderOpen, Play, RefreshCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 import GameSetting from "./common/setting";
+import ImportData from "./common/import";
 
 type Card = {
   id: number;
@@ -161,6 +162,7 @@ export default function FlipCardGame() {
             💾
             {t("data")}
           </Button>
+          <ImportData />
         </div>
       </div>
 

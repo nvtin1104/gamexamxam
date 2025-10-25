@@ -9,11 +9,6 @@ export default function ImportData() {
 
   const fields = [
     { key: "question", label: "Câu hỏi", required: true },
-    { key: "answer_a", label: "Đáp án A", required: true },
-    { key: "answer_b", label: "Đáp án B", required: true },
-    { key: "answer_c", label: "Đáp án C", required: false },
-    { key: "answer_d", label: "Đáp án D", required: false },
-    { key: "correct", label: "Đáp án đúng", required: true },
   ];
 
   return (
@@ -25,7 +20,7 @@ export default function ImportData() {
         onOpenChange={setOpen}
         onImport={setData}
         fields={fields}
-        sampleFileName="mau_cau_hoi"
+        sampleFileName="data"
       />
 
       {data.length > 0 && (

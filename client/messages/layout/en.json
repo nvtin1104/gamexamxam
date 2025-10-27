@@ -6,6 +6,11 @@
   "contact": "Contact",
   "copyright": "© 2025 GameXamXam. All rights reserved.",
   "madeWith": "Made with ❤️ by XamXam",
+  "nav": {
+    "home": "Home",
+    "games": "Games",
+    "contact": "Contact"
+  },
   "games": {
     "duckRace": "Duck Race",
     "flipCard": "Flip Card",

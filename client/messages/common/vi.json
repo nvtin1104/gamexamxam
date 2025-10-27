@@ -5,16 +5,29 @@
     "system": "Hệ thống",
     "toggleTheme": "Chuyển đổi chủ đề"
   },
-  "common": {
-    "loading": "Đang tải...",
-    "error": "Có lỗi xảy ra",
-    "retry": "Thử lại",
-    "back": "Quay lại",
-    "next": "Tiếp theo",
-    "previous": "Trước đó",
-    "close": "Đóng",
-    "save": "Lưu",
+  "import": {
+    "title": "Import dữ liệu từ Excel/CSV",
+    "description": "Import dữ liệu từ Excel/CSV",
+    "sampleFileName": "Dữ liệu mẫu",
+    "sampleFileDescription": "Tải mẫu XLSX",
+    "requiredStructure": "Cấu trúc file yêu cầu",
+    "preview": "Xem trước dữ liệu",
+    "import": "Import",
     "cancel": "Hủy",
-    "confirm": "Xác nhận"
-  }
+    "loading": "Đang xử lý...",
+    "missingColumn": "Thiếu cột bắt buộc",
+    "emptyRow": "Dòng",
+    "emptyColumn": "Cột",
+    "errorReadingFile": "Không thể đọc file. Hãy chắc chắn rằng định dạng hợp lệ (.xlsx, .csv)."
+  },
+  "loading": "Đang tải...",
+  "error": "Có lỗi xảy ra",
+  "retry": "Thử lại",
+  "back": "Quay lại",
+  "next": "Tiếp theo",
+  "previous": "Trước đó",
+  "close": "Đóng",
+  "save": "Lưu",
+  "cancel": "Hủy",
+  "confirm": "Xác nhận"
 }

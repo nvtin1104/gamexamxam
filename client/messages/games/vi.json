@@ -17,7 +17,8 @@
     "restart": "Chơi lại",
     "settings": "Cài đặt",
     "close": "Đóng",
-    "viewAnswer": "Xem đáp án"
+    "viewAnswer": "Xem đáp án",
+    "question": "Câu hỏi"
   },
   "memoryGame": {
     "title": "Trò chơi trí nhớ",

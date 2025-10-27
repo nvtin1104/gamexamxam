@@ -5,16 +5,29 @@
     "system": "System",
     "toggleTheme": "Toggle Theme"
   },
-  "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "retry": "Retry",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "close": "Close",
-    "save": "Save",
+  "import": {
+    "title": "Import data from Excel/CSV",
+    "description": "Import data from Excel/CSV",
+    "sampleFileName": "Sample data",
+    "sampleFileDescription": "Download sample XLSX",
+    "requiredStructure": "Required file structure",
+    "preview": "Preview data",
+    "import": "Import",
     "cancel": "Cancel",
-    "confirm": "Confirm"
-  }
+    "loading": "Loading...",
+    "missingColumn": "Missing required column",
+    "emptyRow": "Row",
+    "emptyColumn": "Column",
+    "errorReadingFile": "Cannot read file. Please make sure the format is valid (.xlsx, .csv)."
+  },
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "retry": "Retry",
+  "back": "Back",
+  "next": "Next",
+  "previous": "Previous",
+  "close": "Close",
+  "save": "Save",
+  "cancel": "Cancel",
+  "confirm": "Confirm"
 }

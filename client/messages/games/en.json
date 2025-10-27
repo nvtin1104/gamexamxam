@@ -16,7 +16,10 @@
     "restart": "Play Again",
     "settings": "Settings",
     "close": "Close",
-    "viewAnswer": "View Answer"
+    "viewAnswer": "View Answer",
+    "dataonline": "Data Online",
+    "data": "Data",
+    "question": "Question"
   },
   "memoryGame": {
     "title": "Memory Game",

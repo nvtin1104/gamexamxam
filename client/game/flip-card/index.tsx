@@ -2,11 +2,13 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { FolderOpen, Play, RefreshCcw } from "lucide-react";
+import { FileUp, FolderOpen, Play, RefreshCcw, Settings } from "lucide-react";
 import { useTranslations } from "next-intl";
 import GameSetting from "./common/setting";
 import ImportModal from "@/components/modal/import";
-import { TableCard } from "./common/table";
+import TextareaModal from "@/components/modal/textarea";
+import { PlayTab } from "./common/tab";
+import { BasicTable } from "@/components/table/basesic";
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const ANIMATION_DURATION = 500;
 
@@ -18,15 +20,15 @@ type Card = {
   revealed: boolean;
 };
 const QUESTIONS = [
-  "Câu hỏi 1️⃣: Nêu công thức tính diện tích tam giác?",
-  "Câu hỏi 2️⃣: Thủ đô của Nhật Bản là gì?",
-  "Câu hỏi 3️⃣: Giải thích khái niệm môi trường?",
-  "Câu hỏi 4️⃣: Tác giả của Truyện Kiều?",
-  "Câu hỏi 5️⃣: 5 x 8 = ?",
-  "Câu hỏi 6️⃣: Nguyên tố H có số hiệu nguyên tử là?",
-  "Câu hỏi 7️⃣: Nêu 3 ví dụ về vật dẫn điện.",
-  "Câu hỏi 8️⃣: Ai là người đầu tiên đặt chân lên Mặt Trăng?",
-  "Câu hỏi 9️⃣: Tên tiếng Anh của ‘máy tính’?",
+  "Câu hỏi 1",
+  "Câu hỏi 2",
+  "Câu hỏi 3",
+  "Câu hỏi 4",
+  "Câu hỏi 5",
+  "Câu hỏi 6",
+  "Câu hỏi 7",
+  "Câu hỏi 8",
+  "Câu hỏi 9",
 ];
 export default function FlipCardGame() {
   const [cards, setCards] = useState<Card[]>([]);
@@ -35,15 +37,25 @@ export default function FlipCardGame() {
   const [started, setStarted] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(true);
+  const [playerData, setPlayerData] = useState<any[]>([]);
+  const [historyData, setHistoryData] = useState<any[]>([]);
 
   const t = useTranslations("games.flipCard");
   const fields = [
     { key: "question", label: t("question"), required: true },
   ];
 
+  const historyFields = [
+    { key: "turn", label: t("turn"), required: true },
+    { key: "question", label: t("question"), required: true },
+    { key: "player", label: t("player"), required: true },
+  ];
 
-  const initGame = () => {
-    const shuffled = [...questions].map((q, i) => ({
+
+  const initGame = (sourceQuestions?: string[]) => {
+    const baseQuestions = sourceQuestions ?? questions;
+    const shuffled = [...baseQuestions].map((q, i) => ({
       id: i,
       text: q,
       revealed: true,
@@ -59,6 +71,7 @@ export default function FlipCardGame() {
   const startGame = async () => {
     setStarted(true);
     setGameOver(false);
+    setIsShuffle(true);
 
     setCards((prev) => {
       return prev.map((c) => ({ ...c, revealed: false }));
@@ -73,6 +86,7 @@ export default function FlipCardGame() {
 
       await delay(SHUFFLE_DELAY);
     }
+    setIsShuffle(false);
   };
 
   const revealCard = (id: number) => {
@@ -92,12 +106,9 @@ export default function FlipCardGame() {
 
   return (
     <div className="relative transition-colors duration-300">
-
-      <div className="flex md:flex-row flex-col items-center justify-center p-3 gap-3">
-        <div>
-          tesst
-        </div>
-        <div className="space-y-6 flex flex-col items-center justify-center w-full">
+      <motion.div layout className="flex md:flex-row flex-col items-center justify-center p-3 gap-3">
+        <PlayTab historyFields={historyFields} historyData={historyData} onAddPlayer={setPlayerData} />
+        <motion.div layout className="space-y-6 flex flex-col items-center justify-center flex-1 w-full">
           <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
             <AnimatePresence>
               {cards.map((card) => (
@@ -110,7 +121,7 @@ export default function FlipCardGame() {
                   exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.3 } }}
 
                   className="relative h-52 w-full md:h-48 cursor-pointer perspective"
-                  onClick={() => revealCard(card.id)}
+                  onClick={() => !isShuffle && revealCard(card.id)}
                 >
                   <motion.div
                     animate={{ rotateY: card.revealed ? 180 : 0 }}
@@ -162,46 +173,53 @@ export default function FlipCardGame() {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
         <div className="flex justify-start flex-col self-stretch gap-3">
-          <div>
+          <div className="flex flex-wrap gap-3 sm:flex-nowrap">
             <Button
               onClick={toggleSettings}
-              variant="outline"
-              className="w-full"
+              className="flex-1 min-w-[120px]"
             >
-              ⚙️
+              <Settings className="mr-1" />
               {t("settings")}
             </Button>
+
+            <div className="flex-1 min-w-[120px]">
+              <TextareaModal
+                title={t("addQuestion")}
+                placeholder={t("addQuestionPlaceholder")}
+                button={t("addQuestion")}
+                onSubmit={async (data) => {
+                  const nextQuestions = [
+                    ...questions,
+                    ...data,
+                  ].filter((q, i, self) => self.indexOf(q) === i);
+                  setQuestions(nextQuestions);
+                  initGame(nextQuestions);
+                }}
+              />
+            </div>
+
             <Button
-              onClick={toggleSettings}
-              variant="outline"
-              className="w-full"
+              onClick={() => setOpen(true)}
+              className="flex-1 min-w-[120px]"
             >
-              👨‍💻
-              {t("dataonline")}
+              <FileUp className="mr-1" />
+              {t("import")}
             </Button>
-            <Button
-              onClick={toggleSettings}
-              variant="outline"
-              className="w-full"
-            >
-              💾
-              {t("data")}
-            </Button>
-            <Button onClick={() => setOpen(true)}>Import Excel</Button>
           </div>
-          <TableCard fields={fields} data={questions} />
+          <BasicTable fields={fields} data={questions.map((q, i) => ({ id: i, question: q }))} />
         </div>
-      </div>
+      </motion.div>
 
       <GameSetting showSettings={showSettings} setShowSettings={setShowSettings} />
       <ImportModal
         open={open}
         onOpenChange={setOpen}
-        onImport={(data) => {
-          setQuestions(data.map((q) => q.question));
-          initGame();
+        onImport={async (data) => {
+          const nextQuestions = data.map((q) => q.question);
+          setQuestions(nextQuestions);
+          initGame(nextQuestions);
         }}
         fields={fields}
         sampleFileName="data"

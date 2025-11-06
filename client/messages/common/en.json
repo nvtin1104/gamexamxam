@@ -20,6 +20,17 @@
     "emptyColumn": "Column",
     "errorReadingFile": "Cannot read file. Please make sure the format is valid (.xlsx, .csv)."
   },
+  "tab": {
+    "history": "History",
+    "player": "Player",
+    "playerDescription": "Player list",
+    "historyDescription": "Game history",
+    "noHistory": "No game history",
+    "noPlayer": "No player",
+    "name": "Name",
+    "hideTable": "Hide table",
+    "showTable": "Show table"
+  },
   "loading": "Loading...",
   "error": "An error occurred",
   "retry": "Retry",

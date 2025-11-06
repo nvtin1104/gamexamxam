@@ -17,6 +17,7 @@ export default {
   			background: {
 				DEFAULT: 'hsl(var(--background))',
 				secondary: 'hsl(var(--background-secondary))',
+				overlay: 'hsl(var(--background-overlay))',
 			},
   			foreground: 'hsl(var(--foreground))',
   			card: {

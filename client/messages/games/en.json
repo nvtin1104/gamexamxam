@@ -15,11 +15,15 @@
     "start": "Start",
     "restart": "Play Again",
     "settings": "Settings",
+    "addQuestion": "Add Question",
     "close": "Close",
     "viewAnswer": "View Answer",
-    "dataonline": "Data Online",
-    "data": "Data",
-    "question": "Question"
+    "question": "Question",
+    "import": "Import Data",
+    "addQuestionPlaceholder": "Each line is an item...\nExample:\nQuestion 1\nQuestion 2\nQuestion 3",
+    "addQuestionButton": "Add",
+    "turn": "Turn",
+    "player": "Player"
   },
   "memoryGame": {
     "title": "Memory Game",

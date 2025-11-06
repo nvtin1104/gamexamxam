@@ -20,6 +20,19 @@
     "emptyColumn": "Cột",
     "errorReadingFile": "Không thể đọc file. Hãy chắc chắn rằng định dạng hợp lệ (.xlsx, .csv)."
   },
+  "tab": {
+    "history": "Lịch sử",
+    "player": "Người chơi",
+    "playerDescription": "Danh sách người chơi",
+    "historyDescription": "Lịch sử chơi",
+    "addPlayer": "Thêm người chơi",
+    "addPlayerPlaceholder": "Mỗi dòng là một mục...\nVí dụ:\nNgười chơi 1\nNgười chơi 2\nNgười chơi 3",
+    "name": "Tên",
+    "noHistory": "Không có lịch sử chơi",
+    "noPlayer": "Không có người chơi",
+    "hideTable": "Ẩn bảng",
+    "showTable": "Hiển thị bảng"
+  },
   "loading": "Đang tải...",
   "error": "Có lỗi xảy ra",
   "retry": "Thử lại",

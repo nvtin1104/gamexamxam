@@ -9,16 +9,20 @@
     "loser": "Chúc may mắn lần sau!"
   },
   "flipCard": {
-    "title": "Lật thẻ Game",
+    "title": "Lật thẻ",
     "description": "Kiểm tra trí nhớ của bạn với trò chơi ghép thẻ!",
     "start": "Bắt đầu",
-    "data": "Dữ liệu",
-    "dataonline": "Dữ liệu online",
+    "addQuestion": "Thêm câu hỏi",
     "restart": "Chơi lại",
     "settings": "Cài đặt",
     "close": "Đóng",
     "viewAnswer": "Xem đáp án",
-    "question": "Câu hỏi"
+    "question": "Câu hỏi",
+    "import": "Nhập dữ liệu",
+    "addQuestionPlaceholder": "Mỗi dòng là một mục...\nVí dụ:\nCâu hỏi 1\nCâu hỏi 2\nCâu hỏi 3",
+    "addQuestionButton": "Thêm",
+    "turn": "Vòng",
+    "player": "Người chơi"
   },
   "memoryGame": {
     "title": "Trò chơi trí nhớ",

@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Download, AlertTriangle } from "lucide-react";
-import { parseExcelFile } from "@/utils/parseExcel";
+import { importExcel } from "@/utils/excel";
 import * as XLSX from "xlsx";
 import { useTranslations } from "next-intl";
 
@@ -35,7 +35,7 @@ export default function ImportModal({
         setErrors([]);
 
         try {
-            const data = (await parseExcelFile(f)) as any[];
+            const data = (await importExcel(f)) as any[];
 
             const validationErrors: string[] = [];
             const requiredKeys = fields.filter(f => f.required).map(f => f.key);

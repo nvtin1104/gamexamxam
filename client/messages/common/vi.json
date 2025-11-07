@@ -31,7 +31,11 @@
     "noHistory": "Không có lịch sử chơi",
     "noPlayer": "Không có người chơi",
     "hideTable": "Ẩn bảng",
-    "showTable": "Hiển thị bảng"
+    "showTable": "Hiển thị bảng",
+    "exportHistory": "Xuất lịch sử",
+    "turn": "Vòng",
+    "question": "Câu hỏi",
+    "playerLabel": "Người chơi"
   },
   "loading": "Đang tải...",
   "error": "Có lỗi xảy ra",

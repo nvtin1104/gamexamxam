@@ -23,7 +23,40 @@
     "addQuestionPlaceholder": "Each line is an item...\nExample:\nQuestion 1\nQuestion 2\nQuestion 3",
     "addQuestionButton": "Add",
     "turn": "Turn",
-    "player": "Player"
+    "player": "Player",
+    "defaultPlayerName": "Me",
+    "nextPlayer": "Next Player",
+    "unknownQuestion": "Unknown question",
+    "exportHistory": "Export history",
+    "successModalTitle": "Congratulations!",
+    "successModalDescription": "You revealed: {card}",
+    "successModalButton": "Shuffle again",
+    "settingsPanel": {
+      "delay": {
+        "label": "Reveal delay",
+        "description": "Seconds to keep all cards visible before the shuffling starts."
+      },
+      "shuffleCount": {
+        "label": "Shuffle iterations",
+        "description": "Number of times the deck is shuffled when starting a round."
+      },
+      "shuffleDelay": {
+        "label": "Delay between shuffles",
+        "description": "Seconds to pause between each shuffle animation."
+      },
+      "animationDuration": {
+        "label": "Flip animation duration",
+        "description": "Seconds each card takes to flip during the animation."
+      },
+      "isMultiplayer": {
+        "label": "Multiplayer mode",
+        "description": "Enable player list management for multiplayer sessions.",
+        "toggleLabel": "Allow multiple players",
+        "on": "Enabled",
+        "off": "Disabled"
+      },
+      "restoreDefaults": "Restore defaults"
+    }
   },
   "memoryGame": {
     "title": "Memory Game",

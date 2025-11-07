@@ -22,7 +22,40 @@
     "addQuestionPlaceholder": "Mỗi dòng là một mục...\nVí dụ:\nCâu hỏi 1\nCâu hỏi 2\nCâu hỏi 3",
     "addQuestionButton": "Thêm",
     "turn": "Vòng",
-    "player": "Người chơi"
+    "player": "Người chơi",
+    "defaultPlayerName": "Tôi",
+    "nextPlayer": "Người chơi tiếp theo",
+    "unknownQuestion": "Câu hỏi chưa xác định",
+    "exportHistory": "Xuất lịch sử",
+    "successModalTitle": "Chúc mừng!",
+    "successModalDescription": "Bạn đã lật: {card}",
+    "successModalButton": "Xáo bài lại",
+    "settingsPanel": {
+      "delay": {
+        "label": "Độ trễ trước khi xáo",
+        "description": "Số giây giữ toàn bộ thẻ hiển thị trước khi bắt đầu xáo bài."
+      },
+      "shuffleCount": {
+        "label": "Số lần xáo",
+        "description": "Số lượt xáo bài được thực hiện khi bắt đầu một ván chơi."
+      },
+      "shuffleDelay": {
+        "label": "Độ trễ giữa các lần xáo",
+        "description": "Số giây tạm dừng giữa mỗi lần xáo bài."
+      },
+      "animationDuration": {
+        "label": "Thời lượng hiệu ứng lật",
+        "description": "Số giây hiệu ứng lật chạy cho mỗi thẻ."
+      },
+      "isMultiplayer": {
+        "label": "Chế độ nhiều người chơi",
+        "description": "Bật quản lý danh sách người chơi cho các phiên nhiều người.",
+        "toggleLabel": "Cho phép nhiều người chơi",
+        "on": "Đang bật",
+        "off": "Đang tắt"
+      },
+      "restoreDefaults": "Khôi phục mặc định"
+    }
   },
   "memoryGame": {
     "title": "Trò chơi trí nhớ",

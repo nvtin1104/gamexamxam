@@ -1,19 +1,25 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { FileUp, FolderOpen, Play, RefreshCcw, Settings } from "lucide-react";
+import { ChevronRight, FileUp, FolderOpen, Play, RefreshCcw, Settings } from "lucide-react";
 import { useTranslations } from "next-intl";
 import GameSetting from "./common/setting";
 import ImportModal from "@/components/modal/import";
 import TextareaModal from "@/components/modal/textarea";
 import { PlayTab } from "./common/tab";
 import { BasicTable } from "@/components/table/basesic";
+import { useSettingStore } from "@/store/setting";
+import { usePlayerStore } from "@/store/player";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-const ANIMATION_DURATION = 500;
-
-const SHUFFLE_COUNT = 4;
-const SHUFFLE_DELAY = 500;
 type Card = {
   id: number;
   text: string;
@@ -38,10 +44,19 @@ export default function FlipCardGame() {
   const [showSettings, setShowSettings] = useState(false);
   const [open, setOpen] = useState(false);
   const [isShuffle, setIsShuffle] = useState(true);
-  const [playerData, setPlayerData] = useState<any[]>([]);
   const [historyData, setHistoryData] = useState<any[]>([]);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successCard, setSuccessCard] = useState<string | null>(null);
+  const shuffleSoundRef = useRef<HTMLAudioElement | null>(null);
+  const flipSoundRef = useRef<HTMLAudioElement | null>(null);
+  const successSoundRef = useRef<HTMLAudioElement | null>(null);
 
   const t = useTranslations("games.flipCard");
+  const flipCardSettings = useSettingStore((state) => state.flipCardSettings);
+  const players = usePlayerStore((state) => state.players);
+  const isMultiplayer = flipCardSettings.isMultiplayer;
+
   const fields = [
     { key: "question", label: t("question"), required: true },
   ];
@@ -52,6 +67,55 @@ export default function FlipCardGame() {
     { key: "player", label: t("player"), required: true },
   ];
 
+
+  const getDefaultPlayerName = () => t("defaultPlayerName");
+
+  const getActivePlayers = () => {
+    if (isMultiplayer && players.length > 0) {
+      return players;
+    }
+    return [{ id: "solo", name: getDefaultPlayerName() }];
+  };
+
+  const getCurrentPlayerName = () => {
+    const activePlayers = getActivePlayers();
+    if (activePlayers.length === 0) {
+      return getDefaultPlayerName();
+    }
+    return activePlayers[currentPlayerIndex % activePlayers.length].name || getDefaultPlayerName();
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    shuffleSoundRef.current = new Audio("/sound/shuffle.mp3");
+    flipSoundRef.current = new Audio("/sound/page-flip.mp3");
+    successSoundRef.current = new Audio("/sound/wow.mp3");
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        shuffleSoundRef.current?.pause();
+        shuffleSoundRef.current && (shuffleSoundRef.current.currentTime = 0);
+        flipSoundRef.current?.pause();
+        flipSoundRef.current && (flipSoundRef.current.currentTime = 0);
+        successSoundRef.current?.pause();
+        successSoundRef.current && (successSoundRef.current.currentTime = 0);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      shuffleSoundRef.current?.pause();
+      flipSoundRef.current?.pause();
+      successSoundRef.current?.pause();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  const playAudio = (audio: HTMLAudioElement | null) => {
+    if (!audio) return;
+    audio.currentTime = 0;
+    void audio.play().catch(() => undefined);
+  };
 
   const initGame = (sourceQuestions?: string[]) => {
     const baseQuestions = sourceQuestions ?? questions;
@@ -64,39 +128,93 @@ export default function FlipCardGame() {
     setGameOver(false);
     setStarted(false);
     setOpen(false);
+    setShowSuccessModal(false);
+    setSuccessCard(null);
   };
 
   useEffect(() => initGame(), []);
+
+  useEffect(() => {
+    if (!isMultiplayer) {
+      setCurrentPlayerIndex(0);
+      return;
+    }
+    if (players.length === 0) {
+      setCurrentPlayerIndex(0);
+      return;
+    }
+    setCurrentPlayerIndex((prev) => prev % players.length);
+  }, [isMultiplayer, players.length]);
+
+  useEffect(
+    () => () => {
+      if (shuffleSoundRef.current) {
+        shuffleSoundRef.current.pause();
+        shuffleSoundRef.current = null;
+      }
+      if (flipSoundRef.current) {
+        flipSoundRef.current.pause();
+        flipSoundRef.current = null;
+      }
+      if (successSoundRef.current) {
+        successSoundRef.current.pause();
+        successSoundRef.current = null;
+      }
+    },
+    []
+  );
 
   const startGame = async () => {
     setStarted(true);
     setGameOver(false);
     setIsShuffle(true);
+    playAudio(flipSoundRef.current);
 
     setCards((prev) => {
       return prev.map((c) => ({ ...c, revealed: false }));
     });
 
-    await delay(ANIMATION_DURATION);
+    await delay(flipCardSettings.delay);
 
-    for (let i = 0; i < SHUFFLE_COUNT; i++) {
+    for (let i = 0; i < flipCardSettings.shuffleCount; i++) {
       setCards((prev) => {
         return [...prev].sort(() => Math.random() - 0.5);
       });
+      playAudio(shuffleSoundRef.current);
 
-      await delay(SHUFFLE_DELAY);
+      await delay(flipCardSettings.shuffleDelay);
     }
     setIsShuffle(false);
   };
 
   const revealCard = (id: number) => {
     if (!started || gameOver) return;
+    const selectedCard = cards.find((c) => c.id === id);
     setCards((prev) =>
       prev.map((c) =>
         c.id === id ? { ...c, revealed: true } : { ...c, revealed: false }
       )
     );
+
+    const playerName = getCurrentPlayerName();
+    setHistoryData((prev) => [
+      ...prev,
+      {
+        turn: prev.length + 1,
+        question: selectedCard?.text ?? t("unknownQuestion"),
+        player: playerName,
+      },
+    ]);
+
+    if (isMultiplayer && players.length > 0) {
+      setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % players.length);
+    }
+
     setGameOver(true);
+    setSuccessCard(selectedCard?.text ?? t("unknownQuestion"));
+    setShowSuccessModal(true);
+    playAudio(flipSoundRef.current);
+    playAudio(successSoundRef.current);
   };
   const flipAllCards = () => {
     setCards((prev) => prev.map((c) => ({ ...c, revealed: true })));
@@ -104,12 +222,31 @@ export default function FlipCardGame() {
 
   const toggleSettings = () => setShowSettings((prev) => !prev);
 
+  const currentPlayerName = getCurrentPlayerName();
+  const hasActivePlayers = !isMultiplayer || players.length > 0;
+
+  const handleSuccessModalChange = (open: boolean) => {
+    if (open) {
+      setShowSuccessModal(true);
+      return;
+    }
+
+    setShowSuccessModal(false);
+    setSuccessCard(null);
+  };
+
+  const handleSuccessContinue = () => {
+    handleSuccessModalChange(false);
+  };
+
+
+
   return (
     <div className="relative transition-colors duration-300">
       <motion.div layout className="flex md:flex-row flex-col items-center justify-center p-3 gap-3">
-        <PlayTab historyFields={historyFields} historyData={historyData} onAddPlayer={setPlayerData} />
+        <PlayTab historyFields={historyFields} historyData={historyData} />
         <motion.div layout className="space-y-6 flex flex-col items-center justify-center flex-1 w-full">
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
+          <div className="grid gap-4 w-full grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
             <AnimatePresence>
               {cards.map((card) => (
                 <motion.div
@@ -125,7 +262,7 @@ export default function FlipCardGame() {
                 >
                   <motion.div
                     animate={{ rotateY: card.revealed ? 180 : 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: flipCardSettings.animationDuration / 1000 }}
                     style={{ transformStyle: 'preserve-3d' }}
                     className="absolute inset-0"
                   >
@@ -151,18 +288,30 @@ export default function FlipCardGame() {
                 className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg"
               >
                 <Play />
-                Bắt đầu
+                {`${t("start")} - ${currentPlayerName}`}
               </Button>
             )}
             {gameOver && (
               <div className="flex gap-3">
-                <Button
-                  onClick={startGame}
-                  variant="outline"
-                >
-                  <RefreshCcw />
-                  {t("restart")}
-                </Button>
+                {
+                  !hasActivePlayers ? (
+                    <Button
+                      onClick={startGame}
+                      variant="outline"
+                    >
+                      <RefreshCcw />
+                      {t("restart")}
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={startGame}
+                      variant="outline"
+                    >
+                      <ChevronRight />
+                      {`${t("start")} - ${currentPlayerName}`}
+                    </Button>
+                  )
+                }
                 <Button
                   onClick={flipAllCards}
                   variant="outline"
@@ -207,6 +356,8 @@ export default function FlipCardGame() {
               <FileUp className="mr-1" />
               {t("import")}
             </Button>
+
+          
           </div>
           <BasicTable fields={fields} data={questions.map((q, i) => ({ id: i, question: q }))} />
         </div>
@@ -224,6 +375,19 @@ export default function FlipCardGame() {
         fields={fields}
         sampleFileName="data"
       />
+
+      <Dialog open={showSuccessModal} onOpenChange={handleSuccessModalChange}>
+        <DialogContent className="max-w-md text-center">
+          <DialogHeader>
+            <DialogTitle>{t("successModalTitle")}</DialogTitle>
+            <DialogDescription>
+              {t("successModalDescription", {
+                card: successCard ?? t("unknownQuestion"),
+              })}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

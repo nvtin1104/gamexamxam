@@ -20,7 +20,7 @@ export const routing = defineRouting({
     },
     "/game/flip-card": {
       en: "/game/flip-card",
-      vi: "/tro-choi/doi-anh",
+      vi: "/tro-choi/lat-the",
     },
     "/game/memory-game": {
       en: "/game/memory-game",

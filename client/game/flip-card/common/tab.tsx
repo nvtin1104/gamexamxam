@@ -1,4 +1,6 @@
-import { AppWindowIcon } from "lucide-react"
+"use client";
+
+import { AppWindowIcon, ArrowLeftCircle, ArrowRightCircle, ChevronLeft, ChevronRight, Download } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 
 import { Button } from "@/components/ui/button"
@@ -20,18 +22,19 @@ import { BasicTable } from "@/components/table/basesic"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 import TextareaModal from "@/components/modal/textarea"
+import { usePlayerStore } from "@/store/player"
+import { useSettingStore } from "@/store/setting"
+import { exportExcel } from "@/utils/excel";
 
 export function PlayTab({
     historyFields,
     historyData,
-    onAddPlayer,
 }: {
     historyFields: {
         key: string;
         label: string;
     }[];
     historyData: any[];
-    onAddPlayer: (data: string[]) => void;
 }) {
     const [open, setOpen] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -39,10 +42,35 @@ export function PlayTab({
     const playerFields = [
         { key: "name", label: t("name") },
     ];
-    const [playerData, setPlayerData] = useState<any[]>([]);
+    const players = usePlayerStore((state) => state.players);
+    const addPlayers = usePlayerStore((state) => state.addPlayers);
+    const resetPlayers = usePlayerStore((state) => state.resetPlayers);
+    const isMultiplayer = useSettingStore((state) => state.flipCardSettings.isMultiplayer);
+
     useEffect(() => {
-        onAddPlayer(playerData);
-    }, [playerData]);
+        if (!isMultiplayer && players.length > 0) {
+            resetPlayers();
+        }
+    }, [isMultiplayer, players.length, resetPlayers]);
+    const exportHistory = () => {
+        if (historyData.length === 0) {
+            return;
+        }
+
+        const headers = [t("turn"), t("question"), t("player")];
+        const rows = historyData.map((item) => [
+            item.turn,
+            item.question ?? "",
+            item.player ?? "",
+        ]);
+
+        exportExcel(
+            `flip-card-history-${new Date().toISOString().slice(0, 10)}.xlsx`,
+            headers,
+            rows,
+            t("history")
+        );
+    };
     return (
         <div className="flex justify-center flex-row self-stretch gap-3 items-center">
             <Button
@@ -52,7 +80,12 @@ export function PlayTab({
                 size="icon"
                 title={open ? t("hideTable") : t("showTable")}
             >
-                <AppWindowIcon className="h-5 w-5" />
+                <motion.div
+                    animate={{ rotate: open ? 180 : 0 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                >
+                    <ChevronRight className="h-5 w-5" />
+                </motion.div>
             </Button>
             <Button
                 aria-expanded={mobileOpen}
@@ -79,7 +112,9 @@ export function PlayTab({
                             <Tabs defaultValue="history" className="w-full">
                                 <TabsList className="w-full justify-start overflow-x-auto gap-2">
                                     <TabsTrigger className="whitespace-nowrap" value="history">{t("history")}</TabsTrigger>
-                                    <TabsTrigger className="whitespace-nowrap" value="player">{t("player")}</TabsTrigger>
+                                    {isMultiplayer && (
+                                        <TabsTrigger className="whitespace-nowrap" value="player">{t("player")}</TabsTrigger>
+                                    )}
                                 </TabsList>
                                 <TabsContent
                                     value="history"
@@ -91,6 +126,14 @@ export function PlayTab({
                                             <CardDescription>
                                                 {t("historyDescription")}
                                             </CardDescription>
+                                            <Button
+                                                onClick={exportHistory}
+                                                variant="outline"
+                                                className="mt-2 flex items-center gap-2"
+                                            >
+                                                <Download/>
+                                                {t("exportHistory")}
+                                            </Button>
                                         </CardHeader>
                                         <CardContent className="grid gap-6">
                                             <BasicTable
@@ -100,46 +143,43 @@ export function PlayTab({
                                             />
                                         </CardContent>
                                         <CardFooter>
-                                            <Button onClick={() => setMobileOpen(false)}>Close</Button>
-                                        </CardFooter>
-                                    </Card>
-                                </TabsContent>
-                                <TabsContent
-                                    value="player"
-                                    className="transition-opacity duration-300 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"
-                                >
-                                    <Card>
-                                        <CardHeader>
-                                            <CardTitle>{t("player")}</CardTitle>
-                                            <CardDescription>
-                                                {t("playerDescription")}
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent className="grid gap-6">
-                                            <TextareaModal
-                                                title={t("addPlayer")}
-                                                placeholder={t("addPlayerPlaceholder")}
-                                                button={t("addPlayer")}
-                                                onSubmit={async (data) => {
-                                                    const nextPlayerData = [
-                                                        ...playerData,
-                                                        ...data.map(item => ({ name: item })),
-                                                    ].filter(p => p.name && p.name.trim() !== "");
 
-                                                    setPlayerData(nextPlayerData);
-                                                }}
-                                            />
-                                            <BasicTable
-                                                fields={playerFields}
-                                                data={playerData}
-                                                emptyText={t("noPlayer")}
-                                            />
-                                        </CardContent>
-                                        <CardFooter>
-                                            <Button onClick={() => setMobileOpen(false)}>Close</Button>
                                         </CardFooter>
                                     </Card>
                                 </TabsContent>
+                                {isMultiplayer && (
+                                    <TabsContent
+                                        value="player"
+                                        className="transition-opacity duration-300 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"
+                                    >
+                                        <Card>
+                                            <CardHeader>
+                                                <CardTitle>{t("player")}</CardTitle>
+                                                <CardDescription>
+                                                    {t("playerDescription")}
+                                                </CardDescription>
+                                            </CardHeader>
+                                            <CardContent className="grid gap-6">
+                                                <TextareaModal
+                                                    title={t("addPlayer")}
+                                                    placeholder={t("addPlayerPlaceholder")}
+                                                    button={t("addPlayer")}
+                                                    onSubmit={async (data) => {
+                                                        addPlayers(data);
+                                                    }}
+                                                />
+                                                <BasicTable
+                                                    fields={playerFields}
+                                                    data={players}
+                                                    emptyText={t("noPlayer")}
+                                                />
+                                            </CardContent>
+                                            <CardFooter>
+                                                <Button onClick={() => setMobileOpen(false)}>Close</Button>
+                                            </CardFooter>
+                                        </Card>
+                                    </TabsContent>
+                                )}
                             </Tabs>
                         </motion.div>
                     </div>
@@ -165,9 +205,11 @@ export function PlayTab({
                                         <TabsTrigger className="whitespace-nowrap" value="history">
                                             {t("history")}
                                         </TabsTrigger>
-                                        <TabsTrigger className="whitespace-nowrap" value="player">
-                                            {t("player")}
-                                        </TabsTrigger>
+                                        {isMultiplayer && (
+                                            <TabsTrigger className="whitespace-nowrap" value="player">
+                                                {t("player")}
+                                            </TabsTrigger>
+                                        )}
                                     </TabsList>
 
                                     <TabsContent
@@ -178,6 +220,14 @@ export function PlayTab({
                                             <CardHeader>
                                                 <CardTitle>{t("history")}</CardTitle>
                                                 <CardDescription>{t("historyDescription")}</CardDescription>
+                                                <Button
+                                                    onClick={exportHistory}
+                                                    variant="outline"
+                                                    className="mt-2 flex items-center gap-2"
+                                                >
+                                                    <Download />
+                                                    {t("exportHistory")}
+                                                </Button>
                                             </CardHeader>
                                             <CardContent className="grid gap-6">
                                                 <BasicTable
@@ -190,37 +240,34 @@ export function PlayTab({
                                     </TabsContent>
 
                                     {/* Player */}
-                                    <TabsContent
-                                        value="player"
-                                        className="transition-opacity duration-300 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"
-                                    >
-                                        <Card>
-                                            <CardHeader>
-                                                <CardTitle>{t("player")}</CardTitle>
-                                                <CardDescription>{t("playerDescription")}</CardDescription>
-                                            </CardHeader>
-                                            <CardContent className="grid gap-6">
-                                                <TextareaModal
-                                                    title={t("addPlayer")}
-                                                    placeholder={t("addPlayerPlaceholder")}
-                                                    button={t("addPlayer")}
-                                                    onSubmit={async (data) => {
-                                                        const nextPlayerData = [
-                                                            ...playerData,
-                                                            ...data.map((item) => ({ name: item })),
-                                                        ].filter((p) => p.name && p.name.trim() !== "");
-
-                                                        setPlayerData(nextPlayerData);
-                                                    }}
-                                                />
-                                                <BasicTable
-                                                    fields={playerFields}
-                                                    data={playerData}
-                                                    emptyText={t("noPlayer")}
-                                                />
-                                            </CardContent>
-                                        </Card>
-                                    </TabsContent>
+                                    {isMultiplayer && (
+                                        <TabsContent
+                                            value="player"
+                                            className="transition-opacity duration-300 data-[state=inactive]:opacity-0 data-[state=active]:opacity-100"
+                                        >
+                                            <Card>
+                                                <CardHeader>
+                                                    <CardTitle>{t("player")}</CardTitle>
+                                                    <CardDescription>{t("playerDescription")}</CardDescription>
+                                                </CardHeader>
+                                                <CardContent className="grid gap-6">
+                                                    <TextareaModal
+                                                        title={t("addPlayer")}
+                                                        placeholder={t("addPlayerPlaceholder")}
+                                                        button={t("addPlayer")}
+                                                        onSubmit={async (data) => {
+                                                            addPlayers(data);
+                                                        }}
+                                                    />
+                                                    <BasicTable
+                                                        fields={playerFields}
+                                                        data={players}
+                                                        emptyText={t("noPlayer")}
+                                                    />
+                                                </CardContent>
+                                            </Card>
+                                        </TabsContent>
+                                    )}
                                 </Tabs>
                             </motion.div>
                         )}

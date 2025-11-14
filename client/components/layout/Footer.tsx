@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { Gamepad2, Github, Mail, Heart } from "lucide-react";
+import { Gamepad2, Github, Mail } from "lucide-react";
 
 export default function Footer() {
   const t = useTranslations("layout");

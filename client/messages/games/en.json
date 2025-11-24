@@ -6,7 +6,11 @@
     "start": "Start",
     "restart": "Play Again",
     "winner": "Congratulations! You won!",
-    "loser": "Better luck next time!"
+    "loser": "Better luck next time!",
+    "metadata": {
+      "title": "Duck Race",
+      "description": "Join the exciting Duck Race! Tap to make your duck run faster and win the race."
+    }
   },
   "flipCard": {
     "title": "Flip Card Game",
@@ -56,6 +60,10 @@
         "off": "Disabled"
       },
       "restoreDefaults": "Restore defaults"
+    },
+    "metadata": {
+      "title": "Flip Card",
+      "description": "Test your memory with this classic Flip Card game. Find matching pairs to win!"
     }
   },
   "memoryGame": {
@@ -68,6 +76,10 @@
     "score": "Score",
     "bestScore": "Best Score",
     "gameOver": "Game Over",
-    "newRecord": "New Record!"
+    "newRecord": "New Record!",
+    "metadata": {
+      "title": "Memory Game",
+      "description": "Challenge your brain with Memory Game. Remember positions and match pairs."
+    }
   }
 }

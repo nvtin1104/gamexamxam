@@ -3,16 +3,41 @@ import Footer from "@/components/layout/Footer";
 import { Locale, routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "./globals.css";
 import "./custom.css";
 import { ThemeProvider } from "@/components/layout/theme";
 
-export const metadata: Metadata = {
-  title: "GameXamXam - Fun Games Collection",
-  description: "Discover our collection of fun and diverse mini games including Duck Race, Flip Card, and Memory Game",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "layout.metadata" });
+
+  return {
+    title: {
+      template: `%s | ${t("title")}`,
+      default: t("title"),
+    },
+    description: t("description"),
+    keywords: t("keywords"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      type: "website",
+      locale: locale,
+      siteName: "GameXamXam",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

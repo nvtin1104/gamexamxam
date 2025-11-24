@@ -1,5 +1,22 @@
 import FlipCardGame from "@/game/flip-card";
 import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
+import { Locale } from "@/i18n/routing";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: { locale: Locale };
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "games.flipCard.metadata" });
+
+    return {
+        title: t("title"),
+        description: t("description"),
+    };
+}
+
 export default async function FlipCardPage() {
     const t = await getTranslations("games.flipCard");
     return <div>

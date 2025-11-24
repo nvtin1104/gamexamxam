@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "GameXamXam - Bộ sưu tập trò chơi thú vị",
+    "description": "Khám phá bộ sưu tập các trò chơi nhỏ thú vị và đa dạng bao gồm Đua vịt, Lật thẻ và Trò chơi trí nhớ",
+    "keywords": "trò chơi, mini game, đua vịt, trò chơi trí nhớ, lật thẻ, vui nhộn, giải trí"
+  },
   "title": "GameXamXam",
   "description": "Khám phá bộ sưu tập trò chơi thú vị và đa dạng",
   "quickLinks": "Liên kết nhanh",
@@ -15,5 +20,66 @@
     "duckRace": "Đua vịt",
     "flipCard": "Lật thẻ",
     "memoryGame": "Trò chơi trí nhớ"
+  },
+  "extensions": {
+    "title": "Tiện ích",
+    "timer": {
+      "title": "Hẹn giờ",
+      "metadata": {
+        "title": "Hẹn giờ",
+        "description": "Đặt hẹn giờ với nhiều kiểu dáng: Vòng tròn, Kỹ thuật số và Lật số."
+      }
+    },
+    "stopwatch": {
+      "title": "Bấm giờ",
+      "metadata": {
+        "title": "Đồng hồ bấm giờ",
+        "description": "Theo dõi thời gian chính xác với tính năng Đồng hồ bấm giờ của chúng tôi. Bao gồm ghi lại vòng."
+      }
+    },
+    "alarm": {
+      "title": "Báo thức",
+      "metadata": {
+        "title": "Báo thức",
+        "description": "Đặt báo thức để quản lý thời gian hiệu quả. Không bao giờ bỏ lỡ sự kiện quan trọng."
+      }
+    }
+  },
+  "timer": {
+    "title": "Hẹn giờ",
+    "circular": "Vòng tròn",
+    "digital": "Kỹ thuật số",
+    "flip": "Lật số",
+    "start": "Bắt đầu",
+    "pause": "Tạm dừng",
+    "reset": "Đặt lại"
+  },
+  "stopwatch": {
+    "title": "Bấm giờ",
+    "start": "Bắt đầu",
+    "stop": "Dừng",
+    "reset": "Đặt lại",
+    "lap": "Vòng",
+    "lapColumn": "Vòng",
+    "timeColumn": "Thời gian"
+  },
+  "alarm": {
+    "title": "Báo thức",
+    "labelPlaceholder": "Nhãn",
+    "noLabel": "Không có nhãn",
+    "noAlarms": "Không có báo thức nào",
+    "alarmTriggered": "Báo thức!"
+  },
+  "countTime": {
+    "title": "Bậc thầy thời gian",
+    "timer": "Hẹn giờ",
+    "stopwatch": "Bấm giờ",
+    "start": "Bắt đầu",
+    "pause": "Tạm dừng",
+    "stop": "Dừng",
+    "reset": "Đặt lại",
+    "lap": "Vòng",
+    "lapColumn": "Vòng",
+    "timeColumn": "Thời gian"
   }
 }

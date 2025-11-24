@@ -26,6 +26,18 @@ export const routing = defineRouting({
       en: "/game/memory-game",
       vi: "/tro-choi/do-mau",
     },
+    "/extensions/timer": {
+      en: "/extensions/timer",
+      vi: "/tien-ich/hen-gio",
+    },
+    "/extensions/stopwatch": {
+      en: "/extensions/stopwatch",
+      vi: "/tien-ich/bam-gio",
+    },
+    "/extensions/alarm": {
+      en: "/extensions/alarm",
+      vi: "/tien-ich/bao-thuc",
+    },
   },
 });
 

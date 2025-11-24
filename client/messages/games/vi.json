@@ -6,7 +6,11 @@
     "start": "Bắt đầu",
     "restart": "Chơi lại",
     "winner": "Chúc mừng! Bạn đã thắng!",
-    "loser": "Chúc may mắn lần sau!"
+    "loser": "Chúc may mắn lần sau!",
+    "metadata": {
+      "title": "Đua vịt",
+      "description": "Tham gia cuộc đua vịt thú vị! Nhấn để vịt của bạn chạy nhanh hơn và giành chiến thắng."
+    }
   },
   "flipCard": {
     "title": "Lật thẻ",
@@ -55,6 +59,10 @@
         "off": "Đang tắt"
       },
       "restoreDefaults": "Khôi phục mặc định"
+    },
+    "metadata": {
+      "title": "Lật thẻ",
+      "description": "Kiểm tra trí nhớ của bạn với trò chơi Lật thẻ cổ điển. Tìm các cặp giống nhau để chiến thắng!"
     }
   },
   "memoryGame": {
@@ -67,6 +75,10 @@
     "score": "Điểm số",
     "bestScore": "Điểm cao nhất",
     "gameOver": "Game Over",
-    "newRecord": "Kỷ lục mới!"
+    "newRecord": "Kỷ lục mới!",
+    "metadata": {
+      "title": "Trò chơi trí nhớ",
+      "description": "Thử thách trí não của bạn với Trò chơi trí nhớ. Ghi nhớ vị trí và ghép các cặp."
+    }
   }
 }

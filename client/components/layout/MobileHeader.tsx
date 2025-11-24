@@ -118,6 +118,53 @@ export default function MobileHeader() {
                   </div>
                 </div>
 
+                <div className="space-y-2">
+                  <div
+                    className="px-4 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide animate-in fade-in slide-in-from-left"
+                    style={{
+                      animationDelay: "275ms",
+                      animationFillMode: "both",
+                    }}
+                  >
+                    {t("extensions.title")}
+                  </div>
+                  <div className="space-y-1">
+                    <Link
+                      href="/extensions/timer"
+                      className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 animate-in fade-in slide-in-from-left"
+                      style={{
+                        animationDelay: "300ms",
+                        animationFillMode: "both",
+                      }}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("extensions.timer")}
+                    </Link>
+                    <Link
+                      href="/extensions/stopwatch"
+                      className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 animate-in fade-in slide-in-from-left"
+                      style={{
+                        animationDelay: "325ms",
+                        animationFillMode: "both",
+                      }}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("extensions.stopwatch")}
+                    </Link>
+                    <Link
+                      href="/extensions/alarm"
+                      className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 animate-in fade-in slide-in-from-left"
+                      style={{
+                        animationDelay: "350ms",
+                        animationFillMode: "both",
+                      }}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {t("extensions.alarm")}
+                    </Link>
+                  </div>
+                </div>
+
                 <Link
                   href="/contact"
                   className="block px-4 py-3 text-lg font-medium text-gray-900 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/50 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 animate-in fade-in slide-in-from-left"

@@ -56,6 +56,38 @@ export default function Header() {
               </div>
             </div>
 
+            <div className="relative group">
+              <button className="flex items-center space-x-1 hover:text-blue-200 dark:hover:text-blue-300 transition-colors duration-200 font-medium">
+                <span>{t("extensions.title")}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg shadow-lg dark:shadow-gray-900/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="py-2">
+                  <Link
+                    href="/extensions/timer"
+                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors"
+                  >
+                    {t("extensions.timer")}
+                  </Link>
+                  <Link
+                    href="/extensions/stopwatch"
+                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors"
+                  >
+                    {t("extensions.stopwatch")}
+                  </Link>
+                  <Link
+                    href="/extensions/alarm"
+                    className="block px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-900/50 transition-colors"
+                  >
+                    {t("extensions.alarm")}
+                  </Link>
+                </div>
+              </div>
+            </div>
+
             <Link
               href="/contact"
               className="hover:text-blue-200 dark:hover:text-blue-300 transition-colors duration-200 font-medium"

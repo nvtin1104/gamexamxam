@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "GameXamXam - Fun Games Collection",
+    "description": "Discover our collection of fun and diverse mini games including Duck Race, Flip Card, and Memory Game",
+    "keywords": "games, mini games, duck race, memory game, flip card, fun, entertainment"
+  },
   "title": "GameXamXam",
   "description": "Discover our collection of fun and diverse mini games",
   "quickLinks": "Quick Links",
@@ -15,5 +20,66 @@
     "duckRace": "Duck Race",
     "flipCard": "Flip Card",
     "memoryGame": "Memory Game"
+  },
+  "extensions": {
+    "title": "Extensions",
+    "timer": {
+      "title": "Timer",
+      "metadata": {
+        "title": "Timer",
+        "description": "Set a timer with multiple styles: Circular, Digital, and Flip."
+      }
+    },
+    "stopwatch": {
+      "title": "Stopwatch",
+      "metadata": {
+        "title": "Stopwatch",
+        "description": "Track time accurately with our Stopwatch feature. Includes lap recording."
+      }
+    },
+    "alarm": {
+      "title": "Alarm",
+      "metadata": {
+        "title": "Alarm",
+        "description": "Set alarms to manage your time effectively. Never miss an important event."
+      }
+    }
+  },
+  "timer": {
+    "title": "Timer",
+    "circular": "Circular",
+    "digital": "Digital",
+    "flip": "Flip",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset"
+  },
+  "stopwatch": {
+    "title": "Stopwatch",
+    "start": "Start",
+    "stop": "Stop",
+    "reset": "Reset",
+    "lap": "Lap",
+    "lapColumn": "Lap",
+    "timeColumn": "Time"
+  },
+  "alarm": {
+    "title": "Alarm",
+    "labelPlaceholder": "Label",
+    "noLabel": "No Label",
+    "noAlarms": "No active alarms",
+    "alarmTriggered": "Alarm Triggered!"
+  },
+  "countTime": {
+    "title": "Time Master",
+    "timer": "Timer",
+    "stopwatch": "Stopwatch",
+    "start": "Start",
+    "pause": "Pause",
+    "stop": "Stop",
+    "reset": "Reset",
+    "lap": "Lap",
+    "lapColumn": "Lap",
+    "timeColumn": "Time"
   }
 }

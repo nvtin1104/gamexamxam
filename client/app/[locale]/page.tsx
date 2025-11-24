@@ -2,6 +2,23 @@ import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { Gamepad2, Zap, Brain, RotateCcw } from "lucide-react";
 
+import { Metadata } from "next";
+import { Locale } from "@/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home.metadata" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
+
 export default async function HomePage() {
   const t = await getTranslations("home");
 

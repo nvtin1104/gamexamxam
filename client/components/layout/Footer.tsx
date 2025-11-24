@@ -92,6 +92,36 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4">{t("extensions.title")}</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/extensions/timer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t("extensions.timer")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/extensions/stopwatch"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t("extensions.stopwatch")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/extensions/alarm"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t("extensions.alarm")}
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="border-t border-gray-700 dark:border-gray-800 mt-8 pt-8">
